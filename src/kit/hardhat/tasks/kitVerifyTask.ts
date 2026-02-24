@@ -1,8 +1,20 @@
 import { verify } from "../../core/verify.js";
 
-export default async function kittyVerifyTask() {
+type KittyVerifyTaskArgs = {
+  configPath: string;
+  print: string;
+};
+
+function parseBooleanOption(value: string, fallback: boolean): boolean {
+  if (value === "") {
+    return fallback;
+  }
+  return value.toLowerCase() === "true";
+}
+
+export default async function kittyVerifyTask(args: KittyVerifyTaskArgs) {
   await verify({
-    configPath: process.env.KIT_CONFIG,
-    printTable: process.env.PRINT === "true",
+    configPath: args.configPath || process.env.KIT_CONFIG,
+    printTable: parseBooleanOption(args.print, process.env.PRINT === "true"),
   });
 }

@@ -1,14 +1,59 @@
 import { task } from "hardhat/config";
 
 export const kittyDeployTask = task("kitty:deploy", "Deploy contracts from scripts config")
+  .addOption({
+    name: "configPath",
+    description: "Path to scripts config file",
+    defaultValue: "",
+  })
+  .addOption({
+    name: "print",
+    description: "Print results table (true/false)",
+    defaultValue: "",
+  })
+  .addOption({
+    name: "signerIndex",
+    description: "Signer index to use (number)",
+    defaultValue: "",
+  })
+  .addOption({
+    name: "ethernal",
+    description: "Push deployments to Ethernal (true/false)",
+    defaultValue: "",
+  })
   .setAction(() => import("./tasks/kitDeployTask.js"))
   .build();
 
 export const kittyInitTask = task("kitty:init", "Initialize deployed contracts from scripts config")
+  .addOption({
+    name: "configPath",
+    description: "Path to scripts config file",
+    defaultValue: "",
+  })
+  .addOption({
+    name: "print",
+    description: "Print results table (true/false)",
+    defaultValue: "",
+  })
+  .addOption({
+    name: "signerIndex",
+    description: "Signer index to use (number)",
+    defaultValue: "",
+  })
   .setAction(() => import("./tasks/kitInitTask.js"))
   .build();
 
 export const kittyVerifyTask = task("kitty:verify", "Verify deployed contracts from scripts config")
+  .addOption({
+    name: "configPath",
+    description: "Path to scripts config file",
+    defaultValue: "",
+  })
+  .addOption({
+    name: "print",
+    description: "Print results table (true/false)",
+    defaultValue: "",
+  })
   .setAction(() => import("./tasks/kitVerifyTask.js"))
   .build();
 

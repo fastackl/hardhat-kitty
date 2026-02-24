@@ -123,6 +123,19 @@ HARDHAT_NETWORK=sepolia yarn hardhat kitty:init
 HARDHAT_NETWORK=sepolia yarn hardhat kitty:verify
 ```
 
+CLI options (examples):
+
+```bash
+yarn hardhat kitty:deploy --network sepolia --print true
+yarn hardhat kitty:init --network sepolia --print true --signer-index 0
+yarn hardhat kitty:verify --network sepolia --print false
+```
+
+Additional task options:
+- `--config-path <path>` for all kitty tasks
+- `--signer-index <n>` for `kitty:deploy` and `kitty:init`
+- `--ethernal true|false` for `kitty:deploy`
+
 Optional env vars:
 - `KIT_CONFIG=<path>`
 - `SIGNERINDEX=<n>` (deploy/init)

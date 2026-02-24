@@ -885,6 +885,7 @@ export async function writeTempImportsSol(
  * Custom table stream
  */
 export class CustomStream {
+  private static readonly FALLBACK_CLI_WIDTH = 120;
   private config: table.StreamUserConfig = {
     border: {
       topBody: "",
@@ -906,7 +907,11 @@ export class CustomStream {
     columnDefault: { width: 50 },
     columnCount: 1,
   };
-  private cliWidth = Math.floor(process.stdout.columns * 0.89);
+  private cliWidth = Math.floor(
+    ((typeof process.stdout.columns === "number"
+      ? process.stdout.columns
+      : CustomStream.FALLBACK_CLI_WIDTH) * 0.89),
+  );
   private headerHorizontalLine: string[] = [];
   private horizontalLine: string[] = [];
   private stream: table.WritableStream;

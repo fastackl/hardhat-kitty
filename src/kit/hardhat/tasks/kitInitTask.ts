@@ -1,9 +1,25 @@
 import { initialize } from "../../core/initialize.js";
 
-export default async function kittyInitTask() {
+type KittyInitTaskArgs = {
+  configPath: string;
+  print: string;
+  signerIndex: string;
+};
+
+function parseBooleanOption(value: string, fallback: boolean): boolean {
+  if (value === "") {
+    return fallback;
+  }
+  return value.toLowerCase() === "true";
+}
+
+export default async function kittyInitTask(args: KittyInitTaskArgs) {
+  const signerIndex = args.signerIndex === ""
+    ? Number(process.env.SIGNERINDEX || "0")
+    : Number(args.signerIndex);
   await initialize({
-    configPath: process.env.KIT_CONFIG,
-    printTable: process.env.PRINT === "true",
-    signerIndex: Number(process.env.SIGNERINDEX || "0"),
+    configPath: args.configPath || process.env.KIT_CONFIG,
+    printTable: parseBooleanOption(args.print, process.env.PRINT === "true"),
+    signerIndex,
   });
 }
