@@ -3,7 +3,7 @@
 Config-driven Hardhat 3 kit for contract `deploy`, `initialize`, and `verify` workflows.
 
 It gives you:
-- Hardhat tasks: `kitty:deploy`, `kitty:init`, `kitty:verify`
+- Hardhat tasks: `kitty:deploy`, `kitty:initialize`, `kitty:verify`
 - Programmatic functions: `deploy`, `testDeploy`, `initialize`, `testInitialize`, `verify`, `testVerify`
 - Persistent deployment metadata saved to `deployments/*.json` for later initialization, verification, and tests
 
@@ -41,14 +41,14 @@ You can always override with `KIT_CONFIG=<path>`.
 Generate a starter config file:
 
 ```bash
-yarn kitty:init
+yarn kitty-init
 ```
 
 This creates `scripts/config/scriptsConfig.ts` if it does not already exist.
 You can also pass a custom output path:
 
 ```bash
-yarn kitty:init ./scripts/config/myScriptsConfig.ts
+yarn kitty-init ./scripts/config/myScriptsConfig.ts
 ```
 
 If installed as a package, you can run the bundled binary directly:
@@ -121,7 +121,7 @@ Preferred CLI UX (explicit flags):
 
 ```bash
 yarn hardhat kitty:deploy --network sepolia --print true
-yarn hardhat kitty:init --network sepolia --print true --signer-index 0
+yarn hardhat kitty:initialize --network sepolia --print true --signer-index 0
 yarn hardhat kitty:verify --network sepolia --print false
 ```
 
@@ -129,7 +129,7 @@ Alternative env-driven form:
 
 ```bash
 HARDHAT_NETWORK=sepolia yarn hardhat kitty:deploy
-HARDHAT_NETWORK=sepolia yarn hardhat kitty:init
+HARDHAT_NETWORK=sepolia yarn hardhat kitty:initialize
 HARDHAT_NETWORK=sepolia yarn hardhat kitty:verify
 ```
 
@@ -137,13 +137,13 @@ CLI options (examples):
 
 ```bash
 yarn hardhat kitty:deploy --network sepolia --print true
-yarn hardhat kitty:init --network sepolia --print true --signer-index 0
+yarn hardhat kitty:initialize --network sepolia --print true --signer-index 0
 yarn hardhat kitty:verify --network sepolia --print false
 ```
 
 Additional task options:
 - `--config-path <path>` for all kitty tasks
-- `--signer-index <n>` for `kitty:deploy` and `kitty:init`
+- `--signer-index <n>` for `kitty:deploy` and `kitty:initialize`
 - `--ethernal true|false` for `kitty:deploy`
 - Boolean options are passed as `true|false` strings (for example `--print true`).
 - When both CLI flags and env vars are provided, CLI flags take precedence.
@@ -160,7 +160,7 @@ Optional env vars:
 - path: `deployments/<ContractName>.json`
 - includes: `contractName`, `sourcePath`, `args`, `libraries`, `abi`, `buildTime`, `network`, `txHash`, `address`
 
-`kitty:init` and `kitty:verify` consume this metadata automatically.
+`kitty:initialize` and `kitty:verify` consume this metadata automatically.
 
 You can also read it in tests/scripts:
 

@@ -58,7 +58,7 @@ describe("hardhat-kitty plugin integration", function () {
 
   it("registers plugin tasks", async function () {
     assert.ok(tasks.getTask("kitty:deploy"));
-    assert.ok(tasks.getTask("kitty:init"));
+    assert.ok(tasks.getTask("kitty:initialize"));
     assert.ok(tasks.getTask("kitty:verify"));
   });
 
@@ -91,7 +91,7 @@ describe("hardhat-kitty plugin integration", function () {
     );
     assert.equal(await helloWorld.sayHello(), "Hello from deploy!");
 
-    await tasks.getTask("kitty:init").run({});
+    await tasks.getTask("kitty:initialize").run({});
 
     assert.equal(await helloWorld.sayHello(), "Hello from initialize!");
   });

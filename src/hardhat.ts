@@ -1,6 +1,6 @@
 export {
   kittyDeployTask,
-  kittyInitTask,
+  kittyInitializeTask,
   kittyTasks,
   kittyVerifyTask,
 } from "./kit/hardhat/registerTasks.js";

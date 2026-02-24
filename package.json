@@ -29,7 +29,7 @@
     "build": "tsc -p tsconfig.build.json",
     "typecheck": "tsc --noEmit",
     "clean": "rm -rf dist",
-    "kitty:init": "tsx src/kit/cli/init.ts",
+    "kitty:config:init": "tsx src/kit/cli/init.ts",
     "test": "hardhat test"
   },
   "bin": {

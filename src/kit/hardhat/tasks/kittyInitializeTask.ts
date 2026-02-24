@@ -1,6 +1,6 @@
 import { initialize } from "../../core/initialize.js";
 
-type KittyInitTaskArgs = {
+type KittyInitializeTaskArgs = {
   configPath: string;
   print: string;
   signerIndex: string;
@@ -13,7 +13,7 @@ function parseBooleanOption(value: string, fallback: boolean): boolean {
   return value.toLowerCase() === "true";
 }
 
-export default async function kittyInitTask(args: KittyInitTaskArgs) {
+export default async function kittyInitializeTask(args: KittyInitializeTaskArgs) {
   const signerIndex = args.signerIndex === ""
     ? Number(process.env.SIGNERINDEX || "0")
     : Number(args.signerIndex);

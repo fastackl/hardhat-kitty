@@ -24,7 +24,7 @@ export const kittyDeployTask = task("kitty:deploy", "Deploy contracts from scrip
   .setAction(() => import("./tasks/kittyDeployTask.js"))
   .build();
 
-export const kittyInitTask = task("kitty:init", "Initialize deployed contracts from scripts config")
+export const kittyInitializeTask = task("kitty:initialize", "Initialize deployed contracts from scripts config")
   .addOption({
     name: "configPath",
     description: "Path to scripts config file",
@@ -40,7 +40,7 @@ export const kittyInitTask = task("kitty:init", "Initialize deployed contracts f
     description: "Signer index to use (number)",
     defaultValue: "",
   })
-  .setAction(() => import("./tasks/kittyInitTask.js"))
+  .setAction(() => import("./tasks/kittyInitializeTask.js"))
   .build();
 
 export const kittyVerifyTask = task("kitty:verify", "Verify deployed contracts from scripts config")
@@ -57,4 +57,4 @@ export const kittyVerifyTask = task("kitty:verify", "Verify deployed contracts f
   .setAction(() => import("./tasks/kittyVerifyTask.js"))
   .build();
 
-export const kittyTasks = [kittyDeployTask, kittyInitTask, kittyVerifyTask];
+export const kittyTasks = [kittyDeployTask, kittyInitializeTask, kittyVerifyTask];
