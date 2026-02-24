@@ -4,20 +4,20 @@
   "description": "Reusable deploy/initialize/verify task kit for Hardhat 3.",
   "license": "MIT",
   "type": "module",
-  "main": "./dist/src/index.js",
-  "types": "./dist/src/index.d.ts",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "exports": {
     ".": {
-      "types": "./dist/src/index.d.ts",
-      "default": "./dist/src/index.js"
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
     },
     "./hardhat": {
-      "types": "./dist/src/hardhat.d.ts",
-      "default": "./dist/src/hardhat.js"
+      "types": "./dist/hardhat.d.ts",
+      "default": "./dist/hardhat.js"
     },
     "./types": {
-      "types": "./dist/src/types.d.ts",
-      "default": "./dist/src/types.js"
+      "types": "./dist/types.d.ts",
+      "default": "./dist/types.js"
     }
   },
   "files": [
@@ -33,7 +33,7 @@
     "test": "hardhat test"
   },
   "bin": {
-    "kitty-init": "./dist/src/kit/cli/init.js"
+    "kitty-init": "./dist/kit/cli/init.js"
   },
   "peerDependencies": {
     "ethers": "^6.16.0",
