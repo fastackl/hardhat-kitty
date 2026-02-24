@@ -31,21 +31,21 @@ export async function initScriptsConfig(
 
   try {
     await fs.access(absolutePath);
-    console.log(`kit:init: Config already exists at ${absolutePath}`);
+    console.log(`kitty:init: Config already exists at ${absolutePath}`);
     return;
   } catch {
     // Continue writing.
   }
 
   await fs.writeFile(absolutePath, defaultConfig, "utf8");
-  console.log(`kit:init: Created ${absolutePath}`);
+  console.log(`kitty:init: Created ${absolutePath}`);
 }
 
 const isRunDirectly = process.argv[1]?.endsWith("init.ts");
 if (isRunDirectly) {
   const maybePath = process.argv[2];
   initScriptsConfig(maybePath).catch((error) => {
-    console.error("kit:init failed:", error);
+    console.error("kitty:init failed:", error);
     process.exitCode = 1;
   });
 }

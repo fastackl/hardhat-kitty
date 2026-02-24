@@ -3,7 +3,7 @@
 Config-driven Hardhat 3 kit for contract `deploy`, `initialize`, and `verify` workflows.
 
 It gives you:
-- Hardhat tasks: `kit:deploy`, `kit:init`, `kit:verify`
+- Hardhat tasks: `kitty:deploy`, `kitty:init`, `kitty:verify`
 - Programmatic functions: `deploy`, `testDeploy`, `initialize`, `testInitialize`, `verify`, `testVerify`
 - Persistent deployment metadata saved to `deployments/*.json` for later initialization, verification, and tests
 
@@ -20,11 +20,11 @@ In your `hardhat.config.ts`:
 ```ts
 import { defineConfig } from "hardhat/config";
 import hardhatToolboxMochaEthers from "@nomicfoundation/hardhat-toolbox-mocha-ethers";
-import { kitTasks } from "@fastackl/hardhat-kitty/hardhat";
+import { kittyTasks } from "@fastackl/hardhat-kitty/hardhat";
 
 export default defineConfig({
   plugins: [hardhatToolboxMochaEthers],
-  tasks: [...kitTasks],
+  tasks: [...kittyTasks],
 });
 ```
 
@@ -38,6 +38,25 @@ By default, the kit looks for config in this order:
 
 You can always override with `KIT_CONFIG=<path>`.
 
+Generate a starter config file:
+
+```bash
+yarn kitty:init
+```
+
+This creates `scripts/config/scriptsConfig.ts` if it does not already exist.
+You can also pass a custom output path:
+
+```bash
+yarn kitty:init ./scripts/config/myScriptsConfig.ts
+```
+
+If installed as a package, you can run the bundled binary directly:
+
+```bash
+yarn kitty-init
+```
+
 Example `scripts/config/scriptsConfig.ts`:
 
 ```ts
@@ -47,9 +66,19 @@ const config: Config = {
   networks: {
     sepolia: {
       deploy: [
+        // Implicit fqn_filePath + fqn
         {
           fqn_contractName: "HelloWorld",
           args: { args: ["Hello from deploy!", 42] },
+        },
+        // Explicit fqn_filePath + fqn
+        {
+          fqn_contractName: "ConfigShowcase",
+          fqn_filePath: "contracts/ConfigShowcase.sol",
+          fqn: "contracts/ConfigShowcase.sol:ConfigShowcase",
+          args: {
+            args: ["HelloWorld.address", "SIGNER[0]", "sepolia config showcase", 1],
+          },
         },
       ],
       initialize: [
@@ -57,6 +86,13 @@ const config: Config = {
           fqn_contractName: "HelloWorld",
           function: "initialize",
           args: { args: ["Hello from initialize!", 99] },
+        },
+        {
+          fqn_contractName: "ConfigShowcase",
+          function: "initialize",
+          args: {
+            args: ["HelloWorld.address", "SIGNER[0]", "sepolia initialized", 2],
+          },
         },
       ],
       verify: ["ALL"],
@@ -70,6 +106,9 @@ export default config;
 ### Config Notes
 
 - `deploy[].fqn_contractName` is required; `fqn_filePath` and `fqn` are optional and auto-derived when omitted.
+- The included smoke fixture demonstrates both forms:
+  - `HelloWorld`: implicit `fqn_filePath`/`fqn`
+  - `ConfigShowcase`: explicit `fqn_filePath`/`fqn`
 - `verify: ["ALL"]` verifies all contracts found in deployment metadata.
 - Argument values support:
   - direct literals
@@ -79,9 +118,9 @@ export default config;
 ## Run Tasks
 
 ```bash
-HARDHAT_NETWORK=sepolia yarn hardhat kit:deploy
-HARDHAT_NETWORK=sepolia yarn hardhat kit:init
-HARDHAT_NETWORK=sepolia yarn hardhat kit:verify
+HARDHAT_NETWORK=sepolia yarn hardhat kitty:deploy
+HARDHAT_NETWORK=sepolia yarn hardhat kitty:init
+HARDHAT_NETWORK=sepolia yarn hardhat kitty:verify
 ```
 
 Optional env vars:
@@ -92,11 +131,11 @@ Optional env vars:
 
 ## Deployment Metadata
 
-`kit:deploy` writes one JSON file per contract under `deployments/`:
+`kitty:deploy` writes one JSON file per contract under `deployments/`:
 - path: `deployments/<ContractName>.json`
 - includes: `contractName`, `sourcePath`, `args`, `libraries`, `abi`, `buildTime`, `network`, `txHash`, `address`
 
-`kit:init` and `kit:verify` consume this metadata automatically.
+`kitty:init` and `kitty:verify` consume this metadata automatically.
 
 You can also read it in tests/scripts:
 

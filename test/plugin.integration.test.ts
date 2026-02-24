@@ -57,9 +57,9 @@ describe("hardhat-kitty plugin integration", function () {
   });
 
   it("registers plugin tasks", async function () {
-    assert.ok(tasks.getTask("kit:deploy"));
-    assert.ok(tasks.getTask("kit:init"));
-    assert.ok(tasks.getTask("kit:verify"));
+    assert.ok(tasks.getTask("kitty:deploy"));
+    assert.ok(tasks.getTask("kitty:init"));
+    assert.ok(tasks.getTask("kitty:verify"));
   });
 
   it("deploys and initializes contracts using default scripts config", async function () {
@@ -79,7 +79,7 @@ describe("hardhat-kitty plugin integration", function () {
     await fs.writeFile(GENERATED_CONFIG_PATH, configModuleSource, "utf8");
     process.env.KIT_CONFIG = GENERATED_CONFIG_PATH;
 
-    await tasks.getTask("kit:deploy").run({});
+    await tasks.getTask("kitty:deploy").run({});
 
     const metadata = await readHelloWorldMetadata();
     assert.equal(metadata.contractName, "HelloWorld");
@@ -91,7 +91,7 @@ describe("hardhat-kitty plugin integration", function () {
     );
     assert.equal(await helloWorld.sayHello(), "Hello from deploy!");
 
-    await tasks.getTask("kit:init").run({});
+    await tasks.getTask("kitty:init").run({});
 
     assert.equal(await helloWorld.sayHello(), "Hello from initialize!");
   });

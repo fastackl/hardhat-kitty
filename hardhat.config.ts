@@ -1,12 +1,12 @@
 import { defineConfig, configVariable } from "hardhat/config";
 import hardhatToolboxMochaEthers from "@nomicfoundation/hardhat-toolbox-mocha-ethers";
 import dotenv from "dotenv";
-import { kitTasks } from "./src/hardhat.js";
+import { kittyTasks } from "./src/hardhat.js";
 dotenv.config();
 
 export default defineConfig({
   plugins: [hardhatToolboxMochaEthers],
-  tasks: [...kitTasks],
+  tasks: [...kittyTasks],
   solidity: {
     compilers: [
       {

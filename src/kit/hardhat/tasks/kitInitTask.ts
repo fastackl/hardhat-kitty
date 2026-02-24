@@ -1,6 +1,6 @@
 import { initialize } from "../../core/initialize.js";
 
-export default async function kitInitTask() {
+export default async function kittyInitTask() {
   await initialize({
     configPath: process.env.KIT_CONFIG,
     printTable: process.env.PRINT === "true",

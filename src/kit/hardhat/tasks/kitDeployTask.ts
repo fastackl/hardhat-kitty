@@ -1,6 +1,6 @@
 import { deploy } from "../../core/deploy.js";
 
-export default async function kitDeployTask() {
+export default async function kittyDeployTask() {
   await deploy({
     configPath: process.env.KIT_CONFIG,
     printTable: process.env.PRINT === "true",
