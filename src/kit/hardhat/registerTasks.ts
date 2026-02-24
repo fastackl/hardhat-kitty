@@ -21,7 +21,7 @@ export const kittyDeployTask = task("kitty:deploy", "Deploy contracts from scrip
     description: "Push deployments to Ethernal (true/false)",
     defaultValue: "",
   })
-  .setAction(() => import("./tasks/kitDeployTask.js"))
+  .setAction(() => import("./tasks/kittyDeployTask.js"))
   .build();
 
 export const kittyInitTask = task("kitty:init", "Initialize deployed contracts from scripts config")
@@ -40,7 +40,7 @@ export const kittyInitTask = task("kitty:init", "Initialize deployed contracts f
     description: "Signer index to use (number)",
     defaultValue: "",
   })
-  .setAction(() => import("./tasks/kitInitTask.js"))
+  .setAction(() => import("./tasks/kittyInitTask.js"))
   .build();
 
 export const kittyVerifyTask = task("kitty:verify", "Verify deployed contracts from scripts config")
@@ -54,7 +54,7 @@ export const kittyVerifyTask = task("kitty:verify", "Verify deployed contracts f
     description: "Print results table (true/false)",
     defaultValue: "",
   })
-  .setAction(() => import("./tasks/kitVerifyTask.js"))
+  .setAction(() => import("./tasks/kittyVerifyTask.js"))
   .build();
 
 export const kittyTasks = [kittyDeployTask, kittyInitTask, kittyVerifyTask];

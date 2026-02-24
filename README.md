@@ -117,6 +117,16 @@ export default config;
 
 ## Run Tasks
 
+Preferred CLI UX (explicit flags):
+
+```bash
+yarn hardhat kitty:deploy --network sepolia --print true
+yarn hardhat kitty:init --network sepolia --print true --signer-index 0
+yarn hardhat kitty:verify --network sepolia --print false
+```
+
+Alternative env-driven form:
+
 ```bash
 HARDHAT_NETWORK=sepolia yarn hardhat kitty:deploy
 HARDHAT_NETWORK=sepolia yarn hardhat kitty:init
@@ -135,6 +145,8 @@ Additional task options:
 - `--config-path <path>` for all kitty tasks
 - `--signer-index <n>` for `kitty:deploy` and `kitty:init`
 - `--ethernal true|false` for `kitty:deploy`
+- Boolean options are passed as `true|false` strings (for example `--print true`).
+- When both CLI flags and env vars are provided, CLI flags take precedence.
 
 Optional env vars:
 - `KIT_CONFIG=<path>`
