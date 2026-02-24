@@ -1,0 +1,50 @@
+#System
+*.*~
+.DS_Store
+**/.DS_Store
+.AppleDouble
+.LSOverride
+
+
+# NodeJS files
+node_modules/
+dist/
+*.tgz
+coverage
+coverage.json
+typechain
+typechain-types
+yarn.lock
+
+# Hardhat files
+cache
+artifacts
+archive
+deployments
+cache/
+out/
+graveyard
+
+# Ignore Environment Variables!
+.env
+.env.prod
+
+# Ignore all vscode settings
+.vscode/
+
+# Ignore flattened files
+flattened.txt
+
+broadcast
+
+# Coverage
+lcov.info
+
+# Woke testing
+.woke-build
+.woke-logs
+pytypes
+__pycache__/
+*.py[cod]
+.hypothesis/
+woke-coverage.cov

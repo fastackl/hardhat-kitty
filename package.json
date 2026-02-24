@@ -1,0 +1,58 @@
+{
+  "name": "@fastackl/hardhat-kitty",
+  "version": "0.1.0",
+  "description": "Reusable deploy/initialize/verify task kit for Hardhat 3.",
+  "license": "MIT",
+  "type": "module",
+  "main": "./dist/src/index.js",
+  "types": "./dist/src/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/src/index.d.ts",
+      "default": "./dist/src/index.js"
+    },
+    "./hardhat": {
+      "types": "./dist/src/hardhat.d.ts",
+      "default": "./dist/src/hardhat.js"
+    },
+    "./types": {
+      "types": "./dist/src/types.d.ts",
+      "default": "./dist/src/types.js"
+    }
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "docs"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "typecheck": "tsc --noEmit",
+    "clean": "rm -rf dist",
+    "kit:init": "tsx src/kit/cli/init.ts",
+    "test": "hardhat test"
+  },
+  "bin": {
+    "kitty-init": "./dist/src/kit/cli/init.js"
+  },
+  "peerDependencies": {
+    "ethers": "^6.16.0",
+    "hardhat": "^3.1.0"
+  },
+  "dependencies": {
+    "@nomicfoundation/hardhat-verify": "^3.0.2",
+    "axios": "^1.7.0",
+    "colors": "^1.4.0",
+    "glob": "^13.0.6",
+    "table": "^6.9.0"
+  },
+  "devDependencies": {
+    "@nomicfoundation/hardhat-toolbox-mocha-ethers": "^3.0.2",
+    "@types/node": "^25.3.0",
+    "dotenv": "^17.3.1",
+    "ethers": "^6.16.0",
+    "hardhat": "^3.1.9",
+    "tsx": "^4.20.6",
+    "typescript": "^5.9.3"
+  }
+}
