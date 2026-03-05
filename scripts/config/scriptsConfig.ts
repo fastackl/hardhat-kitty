@@ -9,6 +9,10 @@ const config: Config = {
           fqn_contractName: "HelloWorld",
           args: { args: ["Hello from deploy!", 42] },
         },
+        // Deploy linked library first so ConfigShowcase can reference its address.
+        {
+          fqn_contractName: "VersionMath",
+        },
         // Explicit fqn_filePath + fqn (fully specified)
         {
           fqn_contractName: "ConfigShowcase",
@@ -16,6 +20,9 @@ const config: Config = {
           fqn: "contracts/ConfigShowcase.sol:ConfigShowcase",
           args: {
             args: ["HelloWorld.address", "SIGNER[0]", "local config showcase", 1],
+          },
+          libraries: {
+            VersionMath: "VersionMath.address",
           },
         },
       ],
@@ -42,6 +49,10 @@ const config: Config = {
           fqn_contractName: "HelloWorld",
           args: { args: ["Hello from deploy!", 42] },
         },
+        // Deploy linked library first so ConfigShowcase can reference its address.
+        {
+          fqn_contractName: "VersionMath",
+        },
         // Explicit fqn_filePath + fqn (fully specified)
         {
           fqn_contractName: "ConfigShowcase",
@@ -49,6 +60,9 @@ const config: Config = {
           fqn: "contracts/ConfigShowcase.sol:ConfigShowcase",
           args: {
             args: ["HelloWorld.address", "SIGNER[0]", "sepolia config showcase", 1],
+          },
+          libraries: {
+            VersionMath: "VersionMath.address",
           },
         },
       ],

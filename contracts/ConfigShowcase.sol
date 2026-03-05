@@ -1,6 +1,8 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
+import "./VersionMath.sol";
+
 contract ConfigShowcase {
     address public helloWorldAddress;
     address public operator;
@@ -16,7 +18,7 @@ contract ConfigShowcase {
         helloWorldAddress = _helloWorldAddress;
         operator = _operator;
         label = _label;
-        version = _version;
+        version = VersionMath.bump(_version);
     }
 
     function initialize(
@@ -28,6 +30,6 @@ contract ConfigShowcase {
         helloWorldAddress = _helloWorldAddress;
         operator = _operator;
         label = _label;
-        version = _version;
+        version = VersionMath.bump(_version);
     }
 }

@@ -71,6 +71,10 @@ const config: Config = {
           fqn_contractName: "HelloWorld",
           args: { args: ["Hello from deploy!", 42] },
         },
+        // Library contract deployed first
+        {
+          fqn_contractName: "VersionMath",
+        },
         // Explicit fqn_filePath + fqn
         {
           fqn_contractName: "ConfigShowcase",
@@ -78,6 +82,9 @@ const config: Config = {
           fqn: "contracts/ConfigShowcase.sol:ConfigShowcase",
           args: {
             args: ["HelloWorld.address", "SIGNER[0]", "sepolia config showcase", 1],
+          },
+          libraries: {
+            VersionMath: "VersionMath.address",
           },
         },
       ],
@@ -109,6 +116,8 @@ export default config;
 - The included smoke fixture demonstrates both forms:
   - `HelloWorld`: implicit `fqn_filePath`/`fqn`
   - `ConfigShowcase`: explicit `fqn_filePath`/`fqn`
+- `deploy[].libraries` supports linked library addresses in ethers format, including references like `"VersionMath.address"`.
+- When using linked libraries, deploy the library contract before contracts that consume it.
 - `verify: ["ALL"]` verifies all contracts found in deployment metadata.
 - Argument values support:
   - direct literals
