@@ -1,6 +1,6 @@
 {
   "name": "@fastackl/hardhat-kitty",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Reusable deploy/initialize/verify task kit for Hardhat 3.",
   "license": "MIT",
   "type": "module",
